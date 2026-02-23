@@ -1,0 +1,198 @@
+---
+const title = "RAG Search";
+---
+
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>{title}</title>
+        <style>
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    "Noto Sans JP",
+                    sans-serif;
+                margin: 0;
+                padding: 24px;
+                max-width: 960px;
+            }
+            h1 {
+                margin: 0 0 16px;
+            }
+            .row {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            input[type="text"] {
+                flex: 1;
+                min-width: 260px;
+                padding: 10px 12px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+            }
+            button {
+                padding: 10px 14px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background: #fff;
+                cursor: pointer;
+            }
+            button:disabled {
+                opacity: 0.55;
+                cursor: not-allowed;
+            }
+            label {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                font-size: 14px;
+                color: #333;
+            }
+            .card {
+                margin-top: 16px;
+                border: 1px solid #eee;
+                border-radius: 12px;
+                padding: 14px;
+            }
+            .muted {
+                color: #666;
+                font-size: 13px;
+            }
+            pre {
+                white-space: pre-wrap;
+                word-break: break-word;
+                background: #fafafa;
+                border: 1px solid #eee;
+                border-radius: 10px;
+                padding: 12px;
+                overflow: auto;
+            }
+            .grid {
+                display: grid;
+                gap: 12px;
+                grid-template-columns: 1fr;
+            }
+            @media (min-width: 900px) {
+                .grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>{title}</h1>
+
+        <div class="row">
+            <input
+                id="q"
+                type="text"
+                placeholder="質問を入力（例：reactについて教えて）"
+            />
+            <button id="go">検索</button>
+            <label>
+                <input id="dbg" type="checkbox" checked />
+                debug（sources/supportsを表示）
+            </label>
+        </div>
+
+        <p class="muted">
+            API: <code>POST /api/search</code>（{`{ query, debug }`}）
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <h3 style="margin:0 0 8px;">回答</h3>
+                <pre id="answer" class="muted">(まだ検索してません)</pre>
+            </div>
+
+            <div class="card">
+                <h3 style="margin:0 0 8px;">デバッグ（sources/supports）</h3>
+                <pre
+                    id="debug"
+                    class="muted">(debug ON で検索すると出ます)</pre>
+            </div>
+        </div>
+
+        <script type="module">
+            const $q = document.getElementById("q");
+            const $go = document.getElementById("go");
+            const $dbg = document.getElementById("dbg");
+            const $answer = document.getElementById("answer");
+            const $debug = document.getElementById("debug");
+
+            function setBusy(b) {
+                $go.disabled = b;
+                $go.textContent = b ? "検索中…" : "検索";
+            }
+
+            async function run() {
+                const query = ($q.value || "").trim();
+                const debug = !!$dbg.checked;
+
+                if (!query) {
+                    $answer.textContent = "質問を入力してね";
+                    return;
+                }
+
+                setBusy(true);
+                $answer.textContent = "呼び出し中…";
+                $debug.textContent = debug ? "呼び出し中…" : "(debug OFF)";
+
+                try {
+                    const res = await fetch("/api/search", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ query, debug }),
+                    });
+
+                    const text = await res.text();
+                    let data;
+                    try {
+                        data = JSON.parse(text);
+                    } catch {
+                        data = { raw: text };
+                    }
+
+                    if (!res.ok) {
+                        $answer.textContent =
+                            "エラー: " + (data?.error ?? text);
+                        $debug.textContent = JSON.stringify(data, null, 2);
+                        return;
+                    }
+
+                    // /api/search が { answer } または debug時 { answer, sources, supports } を返す想定
+                    $answer.textContent = data?.answer ?? "(no answer)";
+                    if (debug) {
+                        const dbgObj = {
+                            sources: data?.sources ?? null,
+                            supports: data?.supports ?? null,
+                        };
+                        $debug.textContent = JSON.stringify(dbgObj, null, 2);
+                    } else {
+                        $debug.textContent = "(debug OFF)";
+                    }
+                } catch (e) {
+                    $answer.textContent = "通信エラー: " + String(e);
+                    $debug.textContent = String(e);
+                } finally {
+                    setBusy(false);
+                }
+            }
+
+            $go.addEventListener("click", run);
+            $q.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") run();
+            });
+
+            // 初期フォーカス
+            $q.focus();
+        </script>
+    </body>
+</html>
