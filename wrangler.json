@@ -30,6 +30,13 @@
 			"observability": {
 				"enabled": true
 			},
+			"preview_urls": true,
+			"routes": [
+				{
+					"custom_domain": true,
+					"pattern": "staging.salmonmikan.dev/*"
+				}
+			],
 			"upload_source_maps": true
 		}
 	}
