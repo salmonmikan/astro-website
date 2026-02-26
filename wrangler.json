@@ -1,14 +1,36 @@
 {
-	"name": "astro-website",
-	"compatibility_date": "2025-10-08",
-	"compatibility_flags": ["nodejs_compat"],
-	"main": "./dist/_worker.js/index.js",
-	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
-	},
-	"observability": {
-		"enabled": true
-	},
-	"upload_source_maps": true
+	"env": {
+		"production": {
+			"name": "astro-website-prod",
+			"compatibility_date": "2025-10-08",
+			"compatibility_flags": [
+				"nodejs_compat"
+			],
+			"main": "./dist/_worker.js/index.js",
+			"assets": {
+				"directory": "./dist",
+				"binding": "ASSETS"
+			},
+			"observability": {
+				"enabled": true
+			},
+			"upload_source_maps": true
+		},
+		"staging": {
+			"name": "astro-website-stg",
+			"compatibility_date": "2025-10-08",
+			"compatibility_flags": [
+				"nodejs_compat"
+			],
+			"main": "./dist/_worker.js/index.js",
+			"assets": {
+				"directory": "./dist",
+				"binding": "ASSETS"
+			},
+			"observability": {
+				"enabled": true
+			},
+			"upload_source_maps": true
+		}
+	}
 }
