@@ -1,0 +1,270 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+
+const pageTitle = 'アカウントとデータの削除について';
+const pageDescription =
+	'めもる。のアカウントおよびクラウド同期データの削除リクエスト方法についてご案内します。';
+---
+
+<html lang="ja">
+	<head>
+		<BaseHead title={pageTitle} description={pageDescription} />
+		<style>
+			:root {
+				--memoru-orange: #ef6b1b;
+				--memoru-orange-deep: #cc5512;
+				--memoru-orange-soft: #fff0e5;
+				--memoru-orange-line: rgba(239, 107, 27, 0.22);
+				--memoru-ink: #23140d;
+				--memoru-muted: #6c554b;
+				--memoru-bg:
+					radial-gradient(circle at top left, rgba(255, 219, 192, 0.7), transparent 28%),
+					radial-gradient(circle at top right, rgba(255, 229, 210, 0.9), transparent 30%),
+					linear-gradient(180deg, #fffaf7 0%, #fff7f1 100%);
+			}
+
+			body {
+				background: var(--memoru-bg);
+			}
+
+			main.deletion-shell {
+				width: 100%;
+				max-width: none;
+				margin: 0 auto;
+				padding: 32px 28px 72px;
+				box-sizing: border-box;
+			}
+
+			.deletion-shell {
+				box-sizing: border-box;
+				max-width: 880px;
+			}
+
+			.deletion-home {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-bottom: 1.5rem;
+				color: var(--memoru-orange);
+				font-weight: 700;
+				text-decoration: none;
+			}
+
+			.deletion-card {
+				background: rgba(255, 255, 255, 0.88);
+				border: 1px solid rgba(255, 255, 255, 0.9);
+				border-radius: 28px;
+				box-shadow: 0 18px 45px rgba(90, 44, 17, 0.08);
+				padding: 32px;
+				backdrop-filter: blur(18px);
+			}
+
+			.deletion-card h1 {
+				font-size: clamp(2rem, 4vw, 3rem);
+				margin-bottom: 0.5rem;
+				color: var(--memoru-ink);
+			}
+
+			.deletion-lead {
+				margin-bottom: 2rem;
+				color: var(--memoru-muted);
+			}
+
+			.request-box {
+				margin-bottom: 2rem;
+				padding: 1.25rem;
+				background: var(--memoru-orange-soft);
+				border: 1px solid var(--memoru-orange-line);
+				border-radius: 18px;
+			}
+
+			.request-box h2 {
+				margin-bottom: 0.8rem;
+				font-size: 1.35rem;
+				color: var(--memoru-ink);
+			}
+
+			.request-box p,
+			.request-box li {
+				color: var(--memoru-muted);
+			}
+
+			.request-box ul {
+				padding-left: 1.3rem;
+				margin: 0.8rem 0 0;
+			}
+
+			.request-box li + li {
+				margin-top: 0.55rem;
+			}
+
+			.deletion-section + .deletion-section {
+				margin-top: 2rem;
+			}
+
+			.deletion-section h2 {
+				margin-bottom: 0.8rem;
+				font-size: 1.35rem;
+				color: var(--memoru-ink);
+			}
+
+			.deletion-section p,
+			.deletion-section li {
+				color: var(--memoru-muted);
+			}
+
+			.deletion-section ul {
+				padding-left: 1.3rem;
+				margin: 0;
+			}
+
+			.deletion-section li + li {
+				margin-top: 0.7rem;
+			}
+
+			.deletion-section a,
+			.request-box a {
+				color: var(--memoru-orange-deep);
+				overflow-wrap: anywhere;
+			}
+
+			.deletion-note {
+				margin-top: 0.9rem;
+				font-weight: 700;
+			}
+
+			@media (max-width: 720px) {
+				main.deletion-shell {
+					padding: 24px clamp(28px, 8vw, 44px) 48px;
+				}
+
+				.deletion-shell {
+					margin-inline: auto;
+				}
+
+				.deletion-home {
+					margin-bottom: 1rem;
+					font-size: 0.98rem;
+				}
+
+				.deletion-card {
+					padding: 22px 18px;
+					border-radius: 22px;
+				}
+
+				.deletion-card h1 {
+					font-size: 2.15rem;
+					line-height: 1.15;
+				}
+
+				.deletion-lead {
+					margin-bottom: 1.5rem;
+				}
+
+				.request-box {
+					padding: 0.9rem 1rem;
+				}
+
+				.request-box h2,
+				.deletion-section h2 {
+					font-size: 1.22rem;
+				}
+
+				.request-box ul,
+				.deletion-section ul {
+					padding-left: 1.1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="deletion-shell">
+			<a class="deletion-home" href="/memoru/">← めもる。ページへ戻る</a>
+			<div class="deletion-card">
+				<h1>アカウントとデータの削除について</h1>
+				<p class="deletion-lead">
+					このページでは、メモアプリ「めもる。」のアカウントおよびクラウド同期データの削除リクエスト方法をご案内します。
+				</p>
+
+				<section class="request-box">
+					<h2>削除リクエスト方法</h2>
+					<p>
+						Google ログインを利用している方で、アカウントおよび関連データの削除を希望する場合は、Google ログインに使用しているメールアドレスから、以下の連絡先へご連絡ください。
+					</p>
+					<ul>
+						<li>連絡先: <a href="mailto:salmonmikan@gmail.com">salmonmikan@gmail.com</a></li>
+						<li>件名例: めもる。アカウント削除依頼</li>
+					</ul>
+					<p class="deletion-note">
+						本人確認および対象データの確認のため、必要に応じて追加情報の確認をお願いする場合があります。
+					</p>
+				</section>
+
+				<section class="deletion-section">
+					<h2>概要</h2>
+					<p>
+						「めもる。」で Google ログインを利用している場合、利用者はアカウントに関連するクラウド同期データの削除をリクエストできます。
+					</p>
+					<p>
+						ログインなしで利用している場合、メモデータは原則として利用端末内に保存されます。端末内のローカルデータは、利用者自身がアプリ内操作または端末操作により削除してください。
+					</p>
+				</section>
+
+				<section class="deletion-section">
+					<h2>削除対象のデータ</h2>
+					<p>削除リクエストを受け付けた場合、原則として以下のデータを削除対象とします。</p>
+					<ul>
+						<li>Firebase Authentication 上のユーザー情報</li>
+						<li>Cloud Firestore に保存されたメモデータ</li>
+						<li>Cloud Firestore に保存されたフォルダデータ</li>
+						<li>Cloud Firestore に保存されたタグデータ</li>
+						<li>Cloud Firestore に保存されたゴミ箱内データ</li>
+					</ul>
+				</section>
+
+				<section class="deletion-section">
+					<h2>削除対象外のデータ</h2>
+					<p>以下のデータは、削除リクエストによる削除対象外です。</p>
+					<ul>
+						<li>利用者の端末内に保存されているローカルデータ</li>
+						<li>利用者自身がエクスポートした JSON バックアップファイル</li>
+						<li>利用者が別途保存・複製したファイルやデータ</li>
+						<li>法令上または不正利用防止等のために保持が必要な最小限の記録</li>
+					</ul>
+				</section>
+
+				<section class="deletion-section">
+					<h2>対応期間</h2>
+					<p>削除リクエストを確認後、原則として 90 日以内に対応します。</p>
+					<p>
+						ただし、本人確認、調査、技術的な対応状況、法令上の要請などにより、対応に追加の時間を要する場合があります。
+					</p>
+				</section>
+
+				<section class="deletion-section">
+					<h2>注意事項</h2>
+					<ul>
+						<li>アプリからログアウトしても、クラウド同期データの削除にはなりません。</li>
+						<li>端末内に保存されたローカルデータは、利用者自身で削除する必要があります。</li>
+						<li>削除完了後、削除対象データを復元することはできません。</li>
+						<li>必要なメモがある場合は、事前にエクスポート機能等でバックアップしてください。</li>
+					</ul>
+				</section>
+
+				<section class="deletion-section">
+					<h2>関連リンク</h2>
+					<p>
+						<a href="/memoru/privacy-policy">プライバシーポリシー</a>
+					</p>
+				</section>
+
+				<section class="deletion-section">
+					<h2>お問い合わせ先</h2>
+					<p>
+						<a href="mailto:salmonmikan@gmail.com">salmonmikan@gmail.com</a>
+					</p>
+				</section>
+			</div>
+		</main>
+	</body>
+</html>
