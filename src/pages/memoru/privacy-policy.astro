@@ -1,0 +1,244 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+
+const pageTitle = 'プライバシーポリシー | めもる。';
+const pageDescription = 'めもる。のプライバシーポリシーです。';
+---
+
+<html lang="ja">
+	<head>
+		<BaseHead title={pageTitle} description={pageDescription} />
+		<style>
+			:root {
+				--memoru-orange: #ef6b1b;
+				--memoru-orange-soft: #fff0e5;
+				--memoru-orange-line: rgba(239, 107, 27, 0.22);
+				--memoru-ink: #23140d;
+				--memoru-muted: #6c554b;
+				--memoru-bg:
+					radial-gradient(circle at top left, rgba(255, 219, 192, 0.7), transparent 28%),
+					radial-gradient(circle at top right, rgba(255, 229, 210, 0.9), transparent 30%),
+					linear-gradient(180deg, #fffaf7 0%, #fff7f1 100%);
+			}
+
+			body {
+				background: var(--memoru-bg);
+			}
+
+			main.policy-shell {
+				width: 100%;
+				max-width: none;
+				margin: 0 auto;
+				padding: 32px 28px 72px;
+				box-sizing: border-box;
+			}
+
+			.policy-shell {
+				box-sizing: border-box;
+				max-width: 880px;
+			}
+
+			.policy-home {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-bottom: 1.5rem;
+				color: var(--memoru-orange);
+				font-weight: 700;
+				text-decoration: none;
+			}
+
+			.policy-card {
+				background: rgba(255, 255, 255, 0.88);
+				border: 1px solid rgba(255, 255, 255, 0.9);
+				border-radius: 28px;
+				box-shadow: 0 18px 45px rgba(90, 44, 17, 0.08);
+				padding: 32px;
+				backdrop-filter: blur(18px);
+			}
+
+			.policy-card h1 {
+				font-size: clamp(2rem, 4vw, 3rem);
+				margin-bottom: 0.5rem;
+				color: var(--memoru-ink);
+			}
+
+			.policy-lead {
+				margin-bottom: 2rem;
+				color: var(--memoru-muted);
+			}
+
+			.policy-meta {
+				margin-bottom: 2rem;
+				padding: 1rem 1.25rem;
+				background: var(--memoru-orange-soft);
+				border: 1px solid var(--memoru-orange-line);
+				border-radius: 18px;
+				color: var(--memoru-muted);
+			}
+
+			.policy-meta a {
+				overflow-wrap: anywhere;
+			}
+
+			.policy-section + .policy-section {
+				margin-top: 2rem;
+			}
+
+			.policy-section h2 {
+				margin-bottom: 0.8rem;
+				font-size: 1.35rem;
+				color: var(--memoru-ink);
+			}
+
+			.policy-section p,
+			.policy-section li {
+				color: var(--memoru-muted);
+			}
+
+			.policy-section ul {
+				padding-left: 1.3rem;
+				margin: 0;
+			}
+
+			.policy-section li + li {
+				margin-top: 0.7rem;
+			}
+
+			@media (max-width: 720px) {
+				main.policy-shell {
+					padding: 24px clamp(28px, 8vw, 44px) 48px;
+				}
+
+				.policy-shell {
+					margin-inline: auto;
+				}
+
+				.policy-home {
+					margin-bottom: 1rem;
+					font-size: 0.98rem;
+				}
+
+				.policy-card {
+					padding: 22px 18px;
+					border-radius: 22px;
+				}
+
+				.policy-card h1 {
+					font-size: 2.15rem;
+					line-height: 1.15;
+				}
+
+				.policy-lead {
+					margin-bottom: 1.5rem;
+				}
+
+				.policy-meta {
+					padding: 0.9rem 1rem;
+				}
+
+				.policy-section h2 {
+					font-size: 1.22rem;
+				}
+
+				.policy-section ul {
+					padding-left: 1.1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="policy-shell">
+			<a class="policy-home" href="/memoru/">← めもる。ページへ戻る</a>
+			<div class="policy-card">
+				<h1>プライバシーポリシー</h1>
+				<p class="policy-lead">
+					めもる。をご利用いただく方のプライバシーを尊重し、取得した情報の取り扱いについてご案内します。
+				</p>
+				<p class="policy-meta">
+					制定日: 2026年5月7日<br />
+					運営者: しゃけみかん<br />
+					連絡先: <a href="mailto:salmonmikan@gmail.com">salmonmikan@gmail.com</a>
+				</p>
+
+				<section class="policy-section">
+					<h2>1. 基本方針</h2>
+					<p>
+						しゃけみかん（以下、「運営者」といいます。）は、「めもる。」（以下、「本アプリ」といいます。）を利用する方（以下、「利用者」といいます。）のプライバシーを尊重し、取得した情報を本ポリシーに従って取り扱います。
+					</p>
+				</section>
+
+				<section class="policy-section">
+					<h2>2. ログインと利用形態</h2>
+					<ul>
+						<li>本アプリは、ログインしなくても利用できます。未ログイン時のメモや設定は、主に利用者の端末内に保存されます。</li>
+						<li>利用者が Google アカウントでログインした場合に限り、Firebase Authentication および Cloud Firestore を利用して認証とクラウド保存を行います。</li>
+					</ul>
+				</section>
+
+				<section class="policy-section">
+					<h2>3. 取得する情報</h2>
+					<ul>
+						<li>利用者が本アプリ内で入力または保存した情報: メモ本文、フォルダ、タグ、並び順、ピン留め状態などのメモ関連データ</li>
+						<li>Google ログイン時に取得または関連付けられる情報: 認証識別子、プロフィール情報、クラウド同期に必要な情報</li>
+						<li>利用者の端末に保存される情報: ローカル設定、表示状態、バックアップや同期に関する設定情報</li>
+					</ul>
+				</section>
+
+				<section class="policy-section">
+					<h2>4. 利用目的</h2>
+					<ul>
+						<li>メモの保存、表示、編集、検索、並び替えなど、本アプリの基本機能を提供するため</li>
+						<li>Google ログイン時に、認証状態の維持およびクラウド同期を行うため</li>
+						<li>利用者からのお問い合わせ対応、不具合調査、重要なお知らせのため</li>
+					</ul>
+				</section>
+
+				<section class="policy-section">
+					<h2>5. 保存先と外部サービス</h2>
+					<ul>
+						<li>未ログイン時のデータは、主として利用者の端末内に保存されます。</li>
+						<li>Google ログイン時は、Firebase Authentication および Cloud Firestore を利用し、認証情報とクラウド保存対象データを取り扱います。</li>
+						<li>これらの外部サービスは Google LLC またはその関連会社が提供するものであり、当該サービス上で保存・処理される情報には各サービスの規約やポリシーが適用されます。</li>
+					</ul>
+				</section>
+
+				<section class="policy-section">
+					<h2>6. 安全管理</h2>
+					<ul>
+						<li>Google ログインおよびクラウド保存に関する情報は、Firebase / Google の提供する仕組みに基づいて管理されます。</li>
+						<li>未ログイン時のデータは利用者の端末に保存されるため、端末の画面ロックやバックアップ設定は利用者ご自身でご管理ください。</li>
+						<li>運営者は、合理的な範囲で安全管理に努めますが、外部サービス固有の障害や不正アクセスを完全に防止することを保証するものではありません。</li>
+					</ul>
+				</section>
+
+				<section class="policy-section">
+					<h2>7. 第三者提供、開示、削除</h2>
+					<ul>
+						<li>運営者は、法令に基づく場合を除き、取得した個人情報を第三者へ提供しません。</li>
+						<li>ただし、Google ログイン、認証、クラウド保存の実現に必要な範囲で、Google LLC が提供する外部サービスを利用します。</li>
+						<li>端末内データは、利用者が本アプリ上で削除するか、アプリを削除することで利用者自身が削除できます。</li>
+						<li>クラウド保存データの削除を希望する場合は、本人確認のうえ、下記連絡先までご連絡ください。</li>
+					</ul>
+				</section>
+
+				<section class="policy-section">
+					<h2>8. ポリシーの改定</h2>
+					<ul>
+						<li>本ポリシーは、必要に応じて内容を見直し、改定することがあります。</li>
+						<li>重要な変更がある場合は、本ページ上での告知など、適切な方法で周知します。</li>
+					</ul>
+				</section>
+
+				<section class="policy-section">
+					<h2>9. お問い合わせ</h2>
+					<p>
+						本ポリシーに関するお問い合わせは、
+						<a href="mailto:salmonmikan@gmail.com">salmonmikan@gmail.com</a>
+						までご連絡ください。
+					</p>
+				</section>
+			</div>
+		</main>
+	</body>
+</html>
